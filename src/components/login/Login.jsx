@@ -1,28 +1,36 @@
 import React, { useRef, useEffect, useContext} from 'react'
-import userContext from '../../context/UserContext'
+import {userContext} from '../../context/UserContext'
 
 const Login = () => {
     const user1 = useRef('')
-    console.log("user "+user.current.value)
+   /* console.log("user1 "+user1.current.value)*/
     const pass = useRef('')
     const [user, setUser] = useContext(userContext)
 
-//    const checkUser = ()=>{
-//         window.localStorage.getItem("user")
-//     }
+    const checkUser = ()=>{
+        setUser({
+    nombre: window.localStorage.getItem("user"),
+    pass: window.localStorage.getItem("pass")
+  });
+  /*Podemos probar a que este state sea solo de true or false*/
+     }
 
-//     useEffect (()=> {
-//         checkUser()
-//        },);
+    useEffect (()=> {
+       console.log("usando UseEffect") 
+       },[]);
     
         
     const signIn = (e) =>{
         e.preventDefault();
-        console.log("Aquí tenemos el user "+ user1.current.value+" y el pass "+ pass.current.value)
+        /*console.log("Aquí tenemos el user "+ user1.current.value+" y el pass "+ pass.current.value)*/
         
-        window.localStorage.setItem("user",JSON.stringify({UserName:user1.current.value, Pass:pass.current.value}) );
-        setUser(user1.current.value)
-
+        /*window.localStorage.setItem("user",JSON.stringify({UserName:user1.current.value, Pass:pass.current.value}) );*/
+        window.localStorage.setItem("user",user1.current.value);
+        window.localStorage.setItem("pass",pass.current.value);
+       checkUser()
+          console.log(user)
+          let g= window.localStorage.getItem("user")
+          console.log(g+" y "+window.localStorage.getItem("pass"))
     }
   return (
     <div>
