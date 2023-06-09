@@ -1,5 +1,6 @@
 import React, { useRef, useEffect, useContext} from 'react'
 import {userContext} from '../../context/UserContext'
+import { useNavigate } from 'react-router-dom';
 
 const Login = () => {
     const user1 = useRef('')
@@ -7,17 +8,29 @@ const Login = () => {
     const pass = useRef('')
     const [user, setUser] = useContext(userContext)
 
-    const checkUser = ()=>{
+    const navigate = useNavigate();
+  const t = window.localStorage.getItem("user");
+  useEffect(() => {
+    setUser({nombre:window.localStorage.getItem("user")});
+    console.log("yyy "+ {user}.nombre) 
+		
+    if (user.nombre===t) {
+      alert("redirigiendo a cats porque estás identificado.")
+			navigate('/cats');
+		}
+	},[]);
+
+   /* const checkUser = ()=>{
         setUser({
     nombre: window.localStorage.getItem("user"),
     pass: window.localStorage.getItem("pass")
   });
-  /*Podemos probar a que este state sea solo de true or false*/
-     }
+  
+     } */
 
-    useEffect (()=> {
+    /*useEffect (()=> {
        console.log("usando UseEffect") 
-       },[]);
+       },[]);*/
     
         
     const signIn = (e) =>{
@@ -27,7 +40,7 @@ const Login = () => {
         /*window.localStorage.setItem("user",JSON.stringify({UserName:user1.current.value, Pass:pass.current.value}) );*/
         window.localStorage.setItem("user",user1.current.value);
         window.localStorage.setItem("pass",pass.current.value);
-       checkUser()
+       /*checkUser()*/
           console.log(user)
           let g= window.localStorage.getItem("user")
           console.log(g+" y "+window.localStorage.getItem("pass"))
