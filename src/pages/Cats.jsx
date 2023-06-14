@@ -8,10 +8,10 @@ const Cats = () => {
   const navigate = useNavigate();
   const t = window.localStorage.getItem("user");
   useEffect(() => {
-    setUser({nombre:window.localStorage.getItem("users")});
-    console.log("yyy "+ {user})
+    setUser({nombre:window.localStorage.getItem("users")}); 
+    console.log("esto es user "+ `${user.name}` +" y esto es storage "+ t)  
 		if (user.nombre!=t) {
-      /*alert("Al no estar logeado no tiene permiso para acceder aqui, por favor, identifíquese.")*/
+      alert("Al no estar logeado no tiene permiso para acceder aqui, por favor, identifíquese.")
 			navigate('/');
 		}
 	}, []);
